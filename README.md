@@ -9,6 +9,12 @@
 1. View body of a post request
 1. Redirect the user to another page
 
+## Setup
+
+1. `cd ~/sei/express-fruits`
+2. Open `express-fruits` in your editor.
+3. `nodemon`
+
 ## Create a new route and page
 
 1. Let's create a page with a form that will allow us to create a new fruit.
@@ -96,6 +102,17 @@ Most of the time, you won't write your own middleware, but a lot of plugins and 
 
 But there's at least one piece of middleware we'll need for most of our Express apps.
 
+But, first, let's modify the test middleware we just wrote to include some useful information:
+
+```js
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.originalUrl}`);
+    next();
+});
+```
+
+This will print out the HTTP method and the URL path for every request to our terminal, which can be very helpful for testing.
+
 ## View body of a post request
 
 When we submit our new fruit form, it sends a POST request to our server, and that request has data in it (name, color, readyToEat, etc).
@@ -137,6 +154,10 @@ Note that, when we check the "Is Ready To Eat:" checkbox, `readyToEat` is added 
 So far, we're just printing out the data from the form, but what we really want is to push the new data into our `fruits` array.
 
 ```js
+// create route
+// this route will catch POST requests to /fruits
+// and, after creating new data, respond by redirecting
+// the user to the index route
 app.post('/fruits', (req, res) => {
     if(req.body.readyToEat === 'on'){
         req.body.readyToEat = true;
