@@ -76,7 +76,7 @@ We can use forms to allow the user to enter their own data:
 Since the form in the last step tells the browser to create a POST request to /fruits, we'll need to set up a route handler for this kind of request
 
 ```js
-app.post('/fruits', (req, res) => {
+app.post('/fruits/', (req, res) => {
     res.send('hi');
 });
 ```
@@ -143,7 +143,7 @@ The `express.urlencoded` method checks to see if the request's headers include a
 Inside the create route, we can do the following:
 
 ```js
-app.post('/fruits', (req, res) => {
+app.post('/fruits/', (req, res) => {
     console.log(req.body);
     res.send('data received');
 });
@@ -158,7 +158,7 @@ So far, we're just printing out the data from the form, but what we really want 
 // this route will catch POST requests to /fruits
 // and, after creating new data, respond by redirecting
 // the user to the index route
-app.post('/fruits', (req, res) => {
+app.post('/fruits/', (req, res) => {
     if(req.body.readyToEat === 'on'){
         req.body.readyToEat = true;
     } else {
@@ -184,7 +184,7 @@ Let's send the user back to the fruits index page upon completion so they can se
 Fortunately, we already have a route that lists all the fruits, so why re-invent the route? Instead, we can just redirect them to another route using the `res.redirect()` method. All we need to pass to this method is the URL path. This would be the same path that we typed into our browser's URL field to hit the index route in the first place.
 
 ```js
-app.post('/fruits', (req, res)=>{
+app.post('/fruits/', (req, res)=>{
     if(req.body.readyToEat === 'on'){
         req.body.readyToEat = true;
     } else {
@@ -208,7 +208,7 @@ We don't have a view to display all fruits yet, so let's refactor the index rout
 First, let's refactor the index route:
 
 ```js
-app.get('/fruits', (req, res) => {
+app.get('/fruits/', (req, res) => {
     res.render('index.ejs', {
         allFruits: fruits
     })
