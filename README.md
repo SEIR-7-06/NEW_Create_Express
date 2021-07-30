@@ -21,7 +21,7 @@
 2. First, we'll need a route for displaying the page in our server.js file **IMPORTANT: put this above your show route, so that the show route doesn't accidentally pick up a /fruits/new request**
 
     ```js
-    app.get('/fruits/newForm', (req, res) => {
+    app.get('/fruits/new', (req, res) => {
         res.render('new.ejs');
     });
     ```
