@@ -43,7 +43,7 @@
     </html>
     ```
 
-Visit http://localhost:3000/fruits/newForm to see if it works.
+Visit http://localhost:3000/fruits/new to see if it works.
 
 ## Add interactivity to your site with forms
 
